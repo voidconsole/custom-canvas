@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div id="canvas"></div>
+  </body>
+
+  <script>
+    const root = document.getElementById('canvas')
+    root.style.backgroundColor = "black"
+    root.style.width = window.outerWidth
+    root.style.height = window.innerHeight;
+    index = 0
+    function background (r,g,b){
+      back = document.createElement('div')
+      let s = back.style
+      s.zIndex= index;
+      s.position = 'absolute'
+      s.width = '100%'
+      s.height = '100%'
+      s.backgroundColor = `rgb(${r},${g},${b})`
+      root.appendChild(back)
+    }
+    function ellipse(x,y,lenx, leny) {
+      div = document.createElement("div")
+      let s = div.style
+      s.backgroundColor = 'white';
+      s.zIndex = index + 1;
+      s.width = lenx + 'px';
+      s.height = leny + 'px';
+      s.position = 'absolute';
+      s.top = y + 'px'
+      s.left = x + 'px'
+      s.borderRadius = '100%'
+      root.appendChild(div)
+    }
+
+
+    //Processing code here:
+    let x = 100
+    let y = 100
+    speedX = Math.floor(Math.random()*50)
+    speedY = Math.floor(Math.random()*50)
+
+    draw = function () {
+      ellipse(x,y,100,100);
+      background(0, 0, 0);
+      if(x>window.innerWidth - 100||x<0+ 100){
+      speedX *= -1
+    }
+    if(y>1000 - 100||y<0+100){
+      speedY *= -1
+    }
+      x += speedX;
+      y += speedY;
+
+      index += 1;
+    };
+
+    setInterval(draw, 30);
+  </script>
+</html>
