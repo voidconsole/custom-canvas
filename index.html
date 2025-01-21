@@ -49,10 +49,10 @@
     draw = function () {
       ellipse(x,y,100,100);
       background(0, 0, 0);
-      if(x>window.innerWidth - 100||x<0+ 100){
+      if(x>(window.innerWidth-200)||x<50){
       speedX *= -1
     }
-    if(y>1000 - 100||y<0+100){
+    if(y>1000 - 200||y<50){
       speedY *= -1
     }
       x += speedX;
